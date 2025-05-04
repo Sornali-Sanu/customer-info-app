@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.UpdateCustomer"
+             Title="Update Customer"
+             BackgroundColor="LightBlue">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="Transparent">
+            <Label Text="Update Customer Info:" FontSize="24" TextColor="#4A90E2" HorizontalOptions="Center" />
+            <Image Source="{Binding PickedImageSource}" 
+                   HeightRequest="100" WidthRequest="100" 
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center"/>
+
+            <Button Text="Upload Image" 
+                    Clicked="OnUploadImageBtn" 
+                    BackgroundColor="#E1BEE7" 
+                    TextColor="Black" BorderColor="Black" 
+ BorderWidth="1"/>
+            <Label Text="Update Name:" TextColor="Black"  FontAttributes="Bold" />
+            <Entry x:Name="NameEntry" 
+                   Text="{Binding Name}" 
+                   Placeholder="Update Name"
+                   TextColor="Black" FontAttributes="Bold"/>
+
+            <Label Text="Date Of Birth:" TextColor="Black" FontAttributes="Bold"/>
+            <DatePicker x:Name="EnterDate" 
+                        Date="{Binding DateofBirth}" TextColor="Black"/>
+
+            <Label Text="Is Regular:" TextColor="Black" FontAttributes="Bold"/>
+            <CheckBox x:Name="IsRegular" 
+                      IsChecked="{Binding IsRegular}"/>
+            <Label Text="Mobile No:"  TextColor="Black" FontAttributes="Bold"  />
+            <Entry x:Name="EnterMobile" 
+                   Text="{Binding MobileNo}" 
+                   Placeholder="Phone No:" FontAttributes="Bold" TextColor="Black"/>
+            <Label Text="Email" TextColor="Black" FontAttributes="Bold" />
+            <Entry x:Name="EnterEmail" 
+                   Text="{Binding Email}" 
+                   Placeholder="Email" FontAttributes="Bold" TextColor="Black"/>
+
+            <Label Text="Addresses" 
+                   FontAttributes="Bold" 
+                   FontSize="Medium" TextColor="Black"/>
+
+            <Entry x:Name="CityEntry" Placeholder="Enter City" TextColor="Black" FontAttributes="Bold" />
+            <Entry x:Name="StreetEntry" Placeholder="Enter Street" TextColor="Black" FontAttributes="Bold" />
+
+            <Button Text="Add Address" 
+                    Clicked="OnAddAddressClicked" 
+                    BackgroundColor="#E1BEE7" 
+                    TextColor="Black"
+                    BorderColor="Black" 
+                    BorderWidth="1"/>
+
+            <ListView x:Name="AddressesListView" 
+                      ItemsSource="{Binding AddressList}" 
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                       
+                    >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid ColumnDefinitions="*, *, Auto" ColumnSpacing="10"  >
+                                    <Entry Grid.Column="0" 
+                                           Placeholder="Street" 
+                                           Text="{Binding Street}" TextColor="Black"/>
+                                    <Entry Grid.Column="1" 
+                                           Placeholder="City" 
+                                           Text="{Binding City}" TextColor="Black"/>
+                                    <Button Grid.Column="2" 
+                                            Text="Remove" BorderColor="black" BorderWidth="1"
+                                            BackgroundColor="#E1BEE7" TextColor="Black"
+                                            Clicked="OnRemoveAddressClicked" 
+                                            CommandParameter="{Binding .}"/>
+                                </Grid>
+                          
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Update" 
+                    Clicked="OnUpdateStudentClicked" 
+                    BackgroundColor="#E1BEE7" 
+                    TextColor="Black"
+                     BorderColor="Black" 
+ BorderWidth="1"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

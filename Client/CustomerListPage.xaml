@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:con="clr-namespace:Client.DTOs"
+             x:Class="Client.CustomerListPage"
+              BackgroundColor="#E3F2FD" 
+             Title="CustomerListPage">
+    <ContentPage.Resources>
+        <con:ImageBaseConverter x:Key="ImageBaseConverter"/>
+    </ContentPage.Resources>
+    <ScrollView BackgroundColor="#F0F8FF">
+        
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Customer List" 
+               FontSize="28" 
+               FontAttributes="Bold" 
+               TextColor="#4A90E2" 
+               HorizontalOptions="Center" />
+
+            <Button Text="Add Customer"
+                Clicked="AddCustomerBtn"
+                BackgroundColor="#E1BEE7"
+                TextColor="Black"
+                CornerRadius="10"
+                HeightRequest="45"
+                WidthRequest="180"
+                HorizontalOptions="Center" BorderColor="Black" 
+ BorderWidth="1" />
+
+            <CollectionView x:Name="CustomerListView" 
+                        ItemsSource="{Binding CustomerList}" 
+                        Margin="0,10,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#B0C4DE" CornerRadius="15" Padding="15" Margin="0,10" BackgroundColor="#F9F9F9" HasShadow="True">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Customer Name:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" TextColor="Black" />
+
+                                <Label Text="{Binding DateofBirth, StringFormat='Date Of Birth: {0:dd/MM/yyyy}'}" 
+                                   FontSize="14" TextColor="Black" />
+
+                                <Label Text="Contact Information:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="Phone:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding MobileNo}" FontSize="14" TextColor="Black"/>
+                                <Label Text="Email:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding Email}" FontSize="14" TextColor="Black"/>
+
+                                <Label Text="{Binding IsRegular, StringFormat='Is Regular: {0}'}" 
+                                   FontSize="14" TextColor="Black"/>
+
+                                <Label Text="Image:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Image Source="{Binding ImageUrl, Converter={StaticResource ImageBaseConverter}}" 
+                                   HeightRequest="120" WidthRequest="120" Aspect="AspectFill" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,5"/>
+
+                                <Label Text="Addresses:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+
+                                <CollectionView ItemsSource="{Binding Addresses}" 
+                                            HeightRequest="60" 
+                                            Margin="0,5" 
+                                            BackgroundColor="#F9F9F9"
+                                          
+                                            VerticalOptions="Start">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <HorizontalStackLayout>
+                                                <Label Text="{Binding City}" TextColor="Black" />
+                                                <Label Text=", " TextColor="Black"/>
+                                                <Label Text="{Binding Street}" TextColor="Black"/>
+                                            </HorizontalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                    <Button Text="Update"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="updateCustomerBtn"
+                                        BackgroundColor="#E1BEE7"
+                                        TextColor="Black"
+                                        CornerRadius="10"
+                                        WidthRequest="100" BorderColor="Black" 
+ BorderWidth="1"/>
+
+                                    <Button Text="Delete"
+                                        Clicked="DeleteBtn"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="#E1BEE7"
+                                        TextColor="Black"
+                                        CornerRadius="10"
+                                        WidthRequest="100" BorderColor="Black" 
+ BorderWidth="1"/>
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+
+</ContentPage>

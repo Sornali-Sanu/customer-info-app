@@ -1,0 +1,1 @@
+C:\Users\SCSL15\Desktop\MauiWithApiSln\Client\Client.csproj;x64
